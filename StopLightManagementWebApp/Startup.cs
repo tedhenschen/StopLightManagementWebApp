@@ -12,6 +12,9 @@ using StopLightManagementWebApp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using StopLightManagement.Context;
 
 namespace StopLightManagementWebApp
 {
@@ -29,11 +32,20 @@ namespace StopLightManagementWebApp
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("StopLightDB")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            //deals with Json Exception message
+            services.AddMvc(option => option.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            services.AddDbContext<TierMeetingContext>(opt =>
+                opt.UseSqlServer(Configuration.GetConnectionString("StopLightDB")));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

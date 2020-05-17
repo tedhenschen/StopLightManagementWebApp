@@ -1,0 +1,54 @@
+﻿@model StopLightManagementWebApp.Models.ViewModels.SiteMeetingVM
+
+@{
+    ViewData["Title"] = "SiteMeetings";
+}
+
+<h1>SiteMeetings</h1>
+
+
+<div class="h1">
+    @Html.DisplayFor(model => model.SiteCode)
+</div>
+<div class="border-bottom h2">
+    Meetings
+    @*<a class="h4" asp-controller="SiteView" asp-action="AddSite" asp-route-id="@Model.ID">Add Site</a>*@
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Site Name
+                </th>
+                <th>
+                    Tier Level
+                </th>
+                <th>
+                    Frequency
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Meeting in Model.Meetings)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Meeting.Site.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Meeting.TierLevel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Meeting.Frequency)
+                    </td>
+                    <td>
+                        View KPIs/Create KPI/Delete Meeting
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

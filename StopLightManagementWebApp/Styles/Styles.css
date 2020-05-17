@@ -1,0 +1,44 @@
+body{
+background-color: #f0e8c5;
+}
+
+div{
+    margin-top: 15px;
+}
+
+#page{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 50px 500px 30px;
+    grid-template-areas: "header header "
+                         "nav main "
+                         "footer footer ";
+}
+
+#page > header{
+    grid-area: header;
+    margin: auto;
+}
+
+#page > nav{
+    grid-area: nav;
+}
+
+#page > main{
+    grid-area: main;
+}
+
+#page > footer{
+    grid-area: footer;
+}
+
+.section-style{
+    margin-right: 25px;
+    margin-left: 25px;
+    background-color: white;
+}
+
+.attention-section{
+    margin: 1pt;
+}
+

@@ -1,0 +1,55 @@
+﻿
+@model StopLightManagementWebApp.Models.ViewModels.OrganizationIndexData
+
+@{
+    ViewData["Title"] = "OrganizationDetails";
+}
+
+<div class="h1">
+    @Html.DisplayFor(model => model.Name)
+</div>
+<div class="border-bottom h2">
+    Sites
+    <a class="h4" asp-controller="SiteView" asp-action="AddSite" asp-route-id="@Model.ID">Add Site</a>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Site Code
+                </th>
+                <th>
+                    Site Name
+                </th>
+                <th>
+                    Date Added
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Site in Model.Sites)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="OrganizationDetails" asp-route-id="@Model.ID">
+                            |
+                            @Html.DisplayFor(modelItem => Site.SiteCode)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Site.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Site.DateCreated)
+                    </td>
+                    <td>
+                        View Meetings/Create Meetings/Delete Site
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

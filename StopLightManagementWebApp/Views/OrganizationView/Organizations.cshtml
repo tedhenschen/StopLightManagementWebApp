@@ -1,0 +1,51 @@
+﻿
+@model IEnumerable<StopLightManagement.Models.Organization>
+@{
+    ViewData["Title"] = "OrganizationDetails";
+}
+
+<h1>OrganizationDetails</h1>
+
+<p>
+    <a asp-action="AddOrganization"> Add Organization</a>
+</p>
+
+<div>
+    <h4> Organizations </h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    <a asp-action="OrganizationDetails" asp-route-id="@item.ID">OrganizationDetails</a> |
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

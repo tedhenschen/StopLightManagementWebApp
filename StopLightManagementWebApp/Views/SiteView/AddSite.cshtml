@@ -1,0 +1,46 @@
+﻿@model StopLightManagementWebApp.Models.ViewModels.SiteVM
+
+
+@{
+    ViewData["Title"] = "Add Site";
+}
+
+<h1>AddOrganization</h1>
+
+<h4>Site</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddSite" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SiteCode" class="control-label"></label>
+                <input asp-for="SiteCode" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrganizationID" class="invisible"></label>
+                <input asp-for="OrganizationID" class="invisible" readonly="readonly"/>
+                <span asp-validation-for="OrganizationID" class="invisible"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Add Site" class="btn btn-primary" formaction="AddSite" />
+                <button asp-action="ReturnOrganization" asp-controller="SiteView" class="btn btn-primary"> Cancel </button>
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
