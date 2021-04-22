@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StopLightManagement.Context;
 
 namespace StopLightManagement.Migrations
 {
     [DbContext(typeof(TierMeetingContext))]
-    partial class TierMeetingContextModelSnapshot : ModelSnapshot
+    [Migration("20200517124614_AddMeetingDepartmentRelationship")]
+    partial class AddMeetingDepartmentRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

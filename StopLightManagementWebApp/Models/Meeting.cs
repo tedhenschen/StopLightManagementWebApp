@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StopLightManagementWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,9 +18,11 @@ namespace StopLightManagement.Models
 
         public DateTime DateCreated { get; set; }
 
-        public Site Site { get; set; }
-
         public List<MeetingKPI> MeetingKPIs { get; set; } = new List<MeetingKPI>();
+
+        public List<MeetingDepartment> MeetingDepartments { get; set; } = new List<MeetingDepartment>();
+
+        public Site Site { get; set; }
 
     }
 
