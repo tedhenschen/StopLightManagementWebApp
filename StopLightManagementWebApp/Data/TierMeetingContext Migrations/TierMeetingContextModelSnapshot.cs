@@ -263,15 +263,15 @@ namespace StopLightManagement.Migrations
                         .IsRequired()
                         .HasColumnType("NVARCHAR(10)");
 
-                    b.Property<int>("SiteOrganizationID")
+                    b.Property<int>("TierLevel")
                         .HasColumnType("int");
 
-                    b.Property<int>("TierLevel")
+                    b.Property<int>("siteOrganizationID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("SiteCode", "SiteOrganizationID");
+                    b.HasIndex("SiteCode", "siteOrganizationID");
 
                     b.ToTable("Meetings");
 
@@ -383,21 +383,6 @@ namespace StopLightManagement.Migrations
                     b.HasCheckConstraint("ck_NullRange", "LowerRange is not null or UpperRange is not null");
                 });
 
-            modelBuilder.Entity("StopLightManagementWebApp.Models.MeetingDepartment", b =>
-                {
-                    b.Property<int>("MeetingID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DepartmentID")
-                        .HasColumnType("int");
-
-                    b.HasKey("MeetingID", "DepartmentID");
-
-                    b.HasIndex("DepartmentID");
-
-                    b.ToTable("MeetingDepartments");
-                });
-
             modelBuilder.Entity("StopLightManagement.Models.Attendee", b =>
                 {
                     b.HasOne("StopLightManagement.Models.Employee", "Employee")
@@ -484,9 +469,9 @@ namespace StopLightManagement.Migrations
 
             modelBuilder.Entity("StopLightManagement.Models.Meeting", b =>
                 {
-                    b.HasOne("StopLightManagement.Models.Site", "Site")
+                    b.HasOne("StopLightManagement.Models.Site", "site")
                         .WithMany("Meetings")
-                        .HasForeignKey("SiteCode", "SiteOrganizationID")
+                        .HasForeignKey("SiteCode", "siteOrganizationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -500,7 +485,7 @@ namespace StopLightManagement.Migrations
                         .IsRequired();
 
                     b.HasOne("StopLightManagement.Models.Meeting", "Meeting")
-                        .WithMany("MeetingKPIs")
+                        .WithMany()
                         .HasForeignKey("MeetingID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -520,21 +505,6 @@ namespace StopLightManagement.Migrations
                     b.HasOne("StopLightManagement.Models.KPI", "KPI")
                         .WithMany("Target")
                         .HasForeignKey("KPIID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("StopLightManagementWebApp.Models.MeetingDepartment", b =>
-                {
-                    b.HasOne("StopLightManagement.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("StopLightManagement.Models.Meeting", "Meeting")
-                        .WithMany("MeetingDepartments")
-                        .HasForeignKey("MeetingID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StopLightManagement.Models;
-using StopLightManagementWebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +23,6 @@ namespace StopLightManagement.Context
         {
             modelBuilder.Entity<MeetingKPI>()
                 .HasKey(x => new { x.MeetingID, x.KPIID });
-
-            modelBuilder.Entity<MeetingDepartment>()
-               .HasKey(x => new { x.MeetingID, x.DepartmentID });
 
             modelBuilder.Entity<Attendee>()
                 .HasKey(x => new { x.MeetingID, x.EmployeeID });
@@ -132,7 +128,6 @@ namespace StopLightManagement.Context
         public DbSet<StopLightManagement.Models.Attendee> Attendee { get; set; }
         public DbSet<StopLightManagement.Models.IssueStatus> IssueStatus { get; set; }
         public DbSet<StopLightManagement.Models.MeetingKPI> MeetingKPI { get; set; }
-        public DbSet<MeetingDepartment> MeetingDepartments { get; set; }
 
     }
 }
