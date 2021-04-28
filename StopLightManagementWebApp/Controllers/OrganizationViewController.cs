@@ -15,12 +15,12 @@ namespace StopLightManagementWebApp.Controllers
     public class OrganizationViewController : Controller
     {
         // Get functions
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
-        public async Task<ActionResult> Organizations(int orgNum = 0)
+        public async Task<ActionResult> Index(int orgNum = 0)
         {
             string url = "";
             List<Organization> Model = null;
