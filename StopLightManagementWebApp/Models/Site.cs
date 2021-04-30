@@ -32,8 +32,10 @@ namespace StopLightManagement.Models
 
         public DateTime DateCreated { get; set; }
 
-
-
+        public static implicit operator Site(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

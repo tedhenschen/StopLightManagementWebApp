@@ -1,26 +1,25 @@
-﻿@model StopLightManagementWebApp.Models.ViewModels.SiteMeetingVM
+﻿
+@model StopLightManagementWebApp.Models.ViewModels.SiteMeetingVM
 
 @{
-    ViewData["Title"] = "SiteMeetings";
+    ViewData["Title"] = "Meetings";
+}
 }
 
-<h1>SiteMeetings</h1>
+<h1>Meetings</h1>
 
-
-<div class="h1">
-    @Html.DisplayFor(model => model.SiteCode)
-</div>
-<div class="border-bottom h2">
-    Meetings
-    @*<a class="h4" asp-controller="SiteView" asp-action="AddSite" asp-route-id="@Model.ID">Add Site</a>*@
-</div>
+<p>
+    <a asp-action=""> Add Meeting</a>
+</p>
 
 <div>
+    <h4> Meetings </h4>
+    <hr />
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    Site Name
+                    ID
                 </th>
                 <th>
                     Tier Level
@@ -28,25 +27,26 @@
                 <th>
                     Frequency
                 </th>
+
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var Meeting in Model.Meetings)
+            @foreach (var meeting in Model.Meetings)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => Meeting.Site.Name)
+                        @Html.DisplayFor(modelItem => meeting.ID)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => Meeting.TierLevel)
+                        @Html.DisplayFor(modelItem => meeting.TierLevel)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => Meeting.Frequency)
+                        @Html.DisplayFor(modelItem => meeting.Frequency)
                     </td>
-                    <td>
-                        View KPIs/Create KPI/Delete Meeting
-                    </td>
+                    @*<td>
+                        <a asp-action="OrganizationDetails" asp-route-id="@meeting.ID">OrganizationDetails</a> |
+                    </td>*@
                 </tr>
             }
         </tbody>

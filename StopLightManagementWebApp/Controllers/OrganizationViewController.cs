@@ -63,6 +63,10 @@ namespace StopLightManagementWebApp.Controllers
             return View(organizationIndexData);
         }
 
+        public IActionResult SiteView(string siteCode)
+        {
+            return RedirectToAction("SiteMeetings", "SiteView", new { SiteCode = siteCode });
+        }
 
 
 

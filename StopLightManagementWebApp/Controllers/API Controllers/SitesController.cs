@@ -41,7 +41,23 @@ namespace StopLightManagement.Controllers
 
             return site;
         }
+        // GET: api/Sites/GetSiteMeeting/SiteCode
+        [HttpGet("GetSiteMeeting/{siteCode}")]
+        public ActionResult<Site> GetSiteMeeting(string siteCode)
+        
+        {
+            var site = _context.Sites
+                .Include(site => site.Meetings)
+                .Where(site => site.SiteCode == siteCode)
+                .FirstOrDefault();
 
+            if (site == null)
+            {
+                return NotFound();
+            }
+
+            return site;
+        }
         // PUT: api/Sites/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

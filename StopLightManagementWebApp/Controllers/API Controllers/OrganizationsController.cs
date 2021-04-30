@@ -39,7 +39,7 @@ namespace StopLightManagement.Controllers
             
          }
 
-        // GET: api/Organizations/5
+        // GET: api/Organizations/GetOrganizationDetails/5
         [HttpGet("GetOrganizationDetails/{id}")]
         public ActionResult<Organization> GetOrganizationDetails(int id)
         {
@@ -57,7 +57,7 @@ namespace StopLightManagement.Controllers
         }
 
 
-        // GET: api/Organizations/5
+        // GET: api/Organizations/GetOrganization/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Organization>> GetOrganization(int id)
         {

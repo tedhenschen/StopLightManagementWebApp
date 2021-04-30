@@ -28,6 +28,13 @@ namespace StopLightManagement.Controllers
             return await _context.Meetings.ToListAsync();
         }
 
+        
+
+        private static string GetSitecode(string sitecode)
+        {
+            return sitecode;
+        }
+
         // GET: api/Meetings/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Meeting>> GetMeeting(int id)

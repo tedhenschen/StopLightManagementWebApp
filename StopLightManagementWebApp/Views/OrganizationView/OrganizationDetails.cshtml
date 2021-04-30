@@ -33,10 +33,7 @@ ViewData["Title"] = "OrganizationDetails";
             {
                 <tr>
                     <td>
-                        <a asp-action="OrganizationDetails" asp-route-id="@Model.ID">
-                            |
-                            @Html.DisplayFor(modelItem => Site.SiteCode)
-                        </a>
+                        <a asp-controller="SiteView" asp-action="SiteMeetings" asp-route-sitecode="@Site.SiteCode"> @Html.DisplayFor(modelItem => Site.SiteCode) </a>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => Site.Name)

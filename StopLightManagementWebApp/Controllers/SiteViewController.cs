@@ -30,6 +30,29 @@ namespace StopLightManagementWebApp.Controllers
             return View(SiteVm);
         }
 
+        //GET: SiteView/SiteMeetings/SiteCode
+        public async Task<IActionResult> SiteMeetings(string sitecode)
+        {
+            string url = "";
+            string SiteCode = sitecode;
+            SiteMeetingVM siteMeetingVM = null;
+
+            if (string.IsNullOrEmpty(SiteCode))
+            {
+                return View("Index");
+            }
+            else
+            {
+                url = $"https://localhost:44375/api/Sites/GetSiteMeeting/{ SiteCode}";
+            }
+
+            var task = await APIHelper.ApiClient.GetAsync(url);
+            var jsonString = await task.Content.ReadAsStringAsync();
+
+            siteMeetingVM = JsonConvert.DeserializeObject<SiteMeetingVM>(jsonString);
+
+            return View(siteMeetingVM);
+        }
 
         [HttpPost]
         public IActionResult ReturnOrganization(SiteVM sitevm)

@@ -1,66 +1,59 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
+@model IEnumerable<StopLightManagement.Models.Meeting>
 
 @{
-    ViewData["Title"] = "TierMeeting";
+    ViewData["Title"] = "Meetings";
+}
 }
 
+<h1>Meetings</h1>
 
+<p>
+    <a asp-action=""> Add Meeting</a>
+</p>
 
-<div class="jumbotron">
-    <h1 class="display-4">Tier Meeting</h1>
-    <p class="Lead">
-        Welcome to the Givaudan Tiered Meeting Platform
-    </p>
-    <h4 id="date"></h4>
-</div>
-
-<div id="card-container"></div>
-
-<div class="card-group">
-    <div class="card" id="card">
-        <div class="card-body">
-
-            <h5 class="card-title" id="department"></h5>
-            <h6 class="card-subtitle mb-2 text-muted">
-                Manager Name
-            </h6>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"> KPI 1</li>
-                <li class="list-group-item"> KPI 1</li>
-                <li class="list-group-item"> KPI 1</li>
-                <li class="list-group-item"> KPI 1</li>
-            </ul>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Department Name</h5>
-            <h6 class="card-subtitle mb-2 text-muted">
-                Manager Name
-            </h6>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"> KPI 1</li>
-                <li class="list-group-item"> KPI 1</li>
-                <li class="list-group-item"> KPI 1</li>
-                <li class="list-group-item"> KPI 1</li>
-            </ul>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Department Name</h5>
-            <h6 class="card-subtitle mb-2 text-muted">
-                Manager Name
-            </h6>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"> KPI 1</li>
-                <li class="list-group-item"> KPI 1</li>
-                <li class="list-group-item"> KPI 1</li>
-                <li class="list-group-item"> KPI 1</li>
-            </ul>
-        </div>
-    </div>
-
+<div>
+    <h4> Meetings </h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TierLevel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Frequency)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Site.SiteCode)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TierLevel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Frequency)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Site.SiteCode)
+                    </td>
+                    <td>
+                        <a asp-action="OrganizationDetails" asp-route-id="@item.ID">OrganizationDetails</a> |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

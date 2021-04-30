@@ -16,9 +16,28 @@ namespace StopLightManagementWebApp.Controllers
 {
     public class MeetingViewController : Controller
     {
-        public IActionResult Index()
+        public async Task<ActionResult> Index(int orgNum = 0)
         {
-            return View();
+            string url = "";
+            List<Meeting> Model = null;
+            if (orgNum > 0)
+            {
+                return View("OrganizationDetails");
+            }
+            else
+            {
+                url = "https://localhost:44375/api/Meetings";
+            }
+
+            var task = await APIHelper.ApiClient.GetAsync(url);
+            var jsonString = await task.Content.ReadAsStringAsync();
+
+            Model = JsonConvert.DeserializeObject<List<Meeting>>(jsonString);
+
+            return View(Model);
         }
+
+       
+
     }
 }
