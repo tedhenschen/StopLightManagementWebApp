@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using StopLightManagementWebApp.Data;
 
 [assembly: HostingStartup(typeof(StopLightManagementWebApp.Areas.Identity.IdentityHostingStartup))]
 namespace StopLightManagementWebApp.Areas.Identity
