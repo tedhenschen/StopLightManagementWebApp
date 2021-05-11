@@ -41,28 +41,6 @@ namespace StopLightManagementWebApp.Controllers
             return View(Model);
         }
 
-        public async Task<IActionResult> OrganizationDetails(int? ID)
-        {
-            string url = "";
-            OrganizationIndexData organizationIndexData = null;
-            
-            if (ID > 0)
-            {
-                url = $"https://localhost:44375/api/Organizations/GetOrganizationDetails/{ ID}";
-            }
-            else
-            {
-                return View("OrganizationDetails");
-            }
-
-            var task = await APIHelper.ApiClient.GetAsync(url);
-            var jsonString = await task.Content.ReadAsStringAsync();
-
-            organizationIndexData = JsonConvert.DeserializeObject<OrganizationIndexData>(jsonString);
-
-
-            return View(organizationIndexData);
-        }
 
         public IActionResult SiteView(string siteCode)
         {

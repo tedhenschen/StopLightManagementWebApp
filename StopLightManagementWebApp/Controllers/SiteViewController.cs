@@ -16,9 +16,27 @@ namespace StopLightManagementWebApp.Controllers
     {
 
         //Default page
-        public IActionResult Index()
+        public  async Task<IActionResult> Index(int? ID)
         {
-            return View();
+            string url = "";
+            OrganizationIndexData organizationIndexData = null;
+
+            if (ID > 0)
+            {
+                url = $"https://localhost:44375/api/Organizations/GetOrganizationDetails/{ ID}";
+            }
+            else
+            {
+                return View("OrganizationDetails");
+            }
+
+            var task = await APIHelper.ApiClient.GetAsync(url);
+            var jsonString = await task.Content.ReadAsStringAsync();
+
+            organizationIndexData = JsonConvert.DeserializeObject<OrganizationIndexData>(jsonString);
+
+
+            return View(organizationIndexData);
         }
 
 
@@ -30,29 +48,6 @@ namespace StopLightManagementWebApp.Controllers
             return View(SiteVm);
         }
 
-        //GET: SiteView/SiteMeetings/SiteCode
-        public async Task<IActionResult> SiteMeetings(string sitecode)
-        {
-            string url = "";
-            string SiteCode = sitecode;
-            SiteMeetingVM siteMeetingVM = null;
-
-            if (string.IsNullOrEmpty(SiteCode))
-            {
-                return View("Index");
-            }
-            else
-            {
-                url = $"https://localhost:44375/api/Sites/GetSiteMeeting/{ SiteCode}";
-            }
-
-            var task = await APIHelper.ApiClient.GetAsync(url);
-            var jsonString = await task.Content.ReadAsStringAsync();
-
-            siteMeetingVM = JsonConvert.DeserializeObject<SiteMeetingVM>(jsonString);
-
-            return View(siteMeetingVM);
-        }
 
         [HttpPost]
         public IActionResult ReturnOrganization(SiteVM sitevm)
