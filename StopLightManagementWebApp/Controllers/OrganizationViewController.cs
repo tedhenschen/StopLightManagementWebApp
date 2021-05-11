@@ -20,7 +20,7 @@ namespace StopLightManagementWebApp.Controllers
         //    return View();
         //}
 
-        public async Task<ActionResult> Index(int orgNum = 0)
+        public async Task<ActionResult> Index(int? orgNum = 0)
         {
             string url = "";
             List<Organization> Model = null;
@@ -60,6 +60,7 @@ namespace StopLightManagementWebApp.Controllers
 
             organizationIndexData = JsonConvert.DeserializeObject<OrganizationIndexData>(jsonString);
 
+
             return View(organizationIndexData);
         }
 
@@ -80,7 +81,6 @@ namespace StopLightManagementWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddOrganization(OganizationVM organization)
         {
-
             if (ModelState.IsValid)
             {
                 string url = "https://localhost:44375/api/Organizations/";
@@ -88,16 +88,61 @@ namespace StopLightManagementWebApp.Controllers
                 var httpContent = new StringContent(jsonString, Encoding.UTF8, "application/json");
                 HttpResponseMessage message = await APIHelper.ApiClient.PostAsync(url, httpContent);
 
+
+
                 if (message.IsSuccessStatusCode)
                 {
-                    return RedirectToAction(nameof(OrganizationDetails));
+                    return RedirectToAction("Index");
                 }
 
             }
-            return View();
-
-
+            return RedirectToAction("Index");
         }
+
+       
+        public async Task<IActionResult> DeleteOrganization(int? ID)
+        {
+            string url = "";
+            OrganizationIndexData organizationIndexData = null;
+
+            if (ID > 0)
+            {
+                url = $"https://localhost:44375/api/Organizations/GetOrganizationDetails/{ ID}";
+            }
+            else
+            {
+                return View("Index");
+            }
+
+            var task = await APIHelper.ApiClient.GetAsync(url);
+            var jsonString = await task.Content.ReadAsStringAsync();
+
+            organizationIndexData = JsonConvert.DeserializeObject<OrganizationIndexData>(jsonString);
+
+
+            return View(organizationIndexData);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteThisOrganization(OrganizationIndexData organization)
+        {
+            if (ModelState.IsValid)
+            {
+                string id = organization.ID.ToString();
+                string url = $"https://localhost:44375/api/Organizations/DeleteOrganization/{ id}";
+                //var jsonString = JsonConvert.SerializeObject(organization);
+                //var httpContent = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                HttpResponseMessage message = await APIHelper.ApiClient.DeleteAsync(url);
+
+                if (message.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+
+            }
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
