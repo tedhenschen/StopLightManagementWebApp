@@ -18,9 +18,7 @@ namespace StopLightManagementWebApp.Controllers
         //Default page
         public  async Task<IActionResult> Index(int? id)
         {
-            string url = "";
-            OrganizationIndexData organizationIndexData = null;
-
+            string url;
             if (id > 0)
             {
                 url = $"https://localhost:44375/api/Organizations/GetOrganizationDetails/{ id}";
@@ -33,9 +31,7 @@ namespace StopLightManagementWebApp.Controllers
             var task = await APIHelper.ApiClient.GetAsync(url);
             var jsonString = await task.Content.ReadAsStringAsync();
 
-            organizationIndexData = JsonConvert.DeserializeObject<OrganizationIndexData>(jsonString);
-
-
+            OrganizationIndexData organizationIndexData = JsonConvert.DeserializeObject<OrganizationIndexData>(jsonString);
             return View(organizationIndexData);
         }
 
@@ -43,8 +39,10 @@ namespace StopLightManagementWebApp.Controllers
         // GET: SiteView/AddSite/1
         public IActionResult AddSite(int id)
         {
-            SiteVM SiteVm = new SiteVM();
-            SiteVm.OrganizationID = id;
+            SiteVM SiteVm = new SiteVM
+            {
+                OrganizationID = id
+            };
             return View(SiteVm);
         }
 

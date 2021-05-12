@@ -4,10 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StopLightManagementWebApp", "StopLightManagementWebApp\StopLightManagementWebApp.csproj", "{455E0590-094F-4D11-A914-B692B962BB83}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E4EDC25A-FEB8-4818-BB0B-C0DAA3880169} = {E4EDC25A-FEB8-4818-BB0B-C0DAA3880169}
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StopLightManagementAPI", "..\StopLightManagementAPI\StopLightManagement\StopLightManagementAPI.csproj", "{C55C83B0-7EF3-420D-A56B-F7A5915BA733}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StopLightManagementClassLibrary", "StopLightManagementClassLibrary\StopLightManagementClassLibrary.csproj", "{8090C30A-05FB-400F-A25D-20BFDDC258FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopLightManagementClassLibrary", "StopLightManagementClassLibrary\StopLightManagementClassLibrary.csproj", "{8090C30A-05FB-400F-A25D-20BFDDC258FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StopLightManagementAPI", "StopLightManagement\StopLightManagementAPI.csproj", "{E4EDC25A-FEB8-4818-BB0B-C0DAA3880169}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +22,14 @@ Global
 		{455E0590-094F-4D11-A914-B692B962BB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{455E0590-094F-4D11-A914-B692B962BB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{455E0590-094F-4D11-A914-B692B962BB83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C55C83B0-7EF3-420D-A56B-F7A5915BA733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C55C83B0-7EF3-420D-A56B-F7A5915BA733}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C55C83B0-7EF3-420D-A56B-F7A5915BA733}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C55C83B0-7EF3-420D-A56B-F7A5915BA733}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8090C30A-05FB-400F-A25D-20BFDDC258FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8090C30A-05FB-400F-A25D-20BFDDC258FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8090C30A-05FB-400F-A25D-20BFDDC258FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8090C30A-05FB-400F-A25D-20BFDDC258FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4EDC25A-FEB8-4818-BB0B-C0DAA3880169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4EDC25A-FEB8-4818-BB0B-C0DAA3880169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4EDC25A-FEB8-4818-BB0B-C0DAA3880169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4EDC25A-FEB8-4818-BB0B-C0DAA3880169}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

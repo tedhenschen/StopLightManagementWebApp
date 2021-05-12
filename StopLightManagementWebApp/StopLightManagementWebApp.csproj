@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\StopLightManagementAPI\StopLightManagement\StopLightManagementAPI.csproj" />
     <ProjectReference Include="..\StopLightManagementClassLibrary\StopLightManagementClassLibrary.csproj" />
+    <ProjectReference Include="..\StopLightManagement\StopLightManagementAPI.csproj" />
   </ItemGroup>
 
 </Project>

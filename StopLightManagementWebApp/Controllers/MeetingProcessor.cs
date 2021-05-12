@@ -12,8 +12,7 @@ namespace StopLightManagementWebApp.Controllers
     {
         public async Task<Organization> LoadOrganization(int orgNum = 0)
         {
-            string url = "";
-
+            string url;
             if (orgNum > 0)
             {
                 url = $"https://localhost:44375/api/Organizations/GetOrganizationDetails/{ orgNum}";
@@ -23,18 +22,16 @@ namespace StopLightManagementWebApp.Controllers
                 url = "https://localhost:44375/api/Organizations";
             }
 
-            using (HttpResponseMessage response = await APIHelper.ApiClient.GetAsync(url))            {
-                if (response.IsSuccessStatusCode)
-                {
-                    Organization Organization = await response.Content.ReadAsAsync<Organization>();
+            using HttpResponseMessage response = await APIHelper.ApiClient.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                Organization Organization = await response.Content.ReadAsAsync<Organization>();
 
-                    return Organization;
-                }
-                else 
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-
+                return Organization;
+            }
+            else
+            {
+                throw new Exception(response.ReasonPhrase);
             }
         }
 
