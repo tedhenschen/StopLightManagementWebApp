@@ -42,7 +42,7 @@ ViewData["Title"] = "OrganizationDetails";
                         @Html.DisplayFor(modelItem => Site.DateCreated)
                     </td>
                     <td>
-                        View Meetings/Create Meetings/Delete Site
+                        View Meetings/Create Meetings/ <a asp-controller="SiteView" asp-action="DeleteSite" asp-route-siteCode="@Site.SiteCode" asp-route-organizationID="@Site.OrganizationID"> Delete </a>
                     </td>
                 </tr>
             }

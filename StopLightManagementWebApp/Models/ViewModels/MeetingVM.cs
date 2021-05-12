@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StopLightManagementWebApp.Models.ViewModels
 {
-    public class SiteMeetings
+    public class SiteMeeting
     {
         public int ID { get; set; }
 

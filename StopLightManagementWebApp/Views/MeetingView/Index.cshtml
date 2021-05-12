@@ -50,9 +50,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => meeting.Frequency)
                 </td>
-                @*<td>
-            <a asp-action="OrganizationDetails" asp-route-id="@meeting.ID">OrganizationDetails</a> |
-        </td>*@
+                <td>
+                    <a asp-action="DeleteMeeting" asp-route-id="@meeting.ID" asp-route-sitecode="@meeting.SiteCode">Delete</a> |
+                </td>
             </tr>
             }
         </tbody>

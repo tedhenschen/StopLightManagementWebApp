@@ -38,7 +38,7 @@ namespace StopLightManagementWebApp.Controllers
             return View(siteMeetingVM);
         }
 
-        // GET: SiteView/AddSite
+        // GET: SiteView/AddMeeting
         public IActionResult AddMeeting(string sitecode, int id)
         {
             NewMeeting newMeeting = new NewMeeting
@@ -50,7 +50,7 @@ namespace StopLightManagementWebApp.Controllers
         }
 
 
-        //POST: SiteView/AddSite
+        //POST: SiteView/AddMeeting
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddMeeting(NewMeeting newMeeting)
@@ -69,6 +69,45 @@ namespace StopLightManagementWebApp.Controllers
 
             }
             return View();
+        }
+
+        public async Task<IActionResult> DeleteMeeting(string sitecode, int id)
+        {
+            string url;
+            if (id > 0)
+            {
+                url = $"https://localhost:44375/api/Meetings/{ id}";
+            }
+            else
+            {
+                return RedirectToAction($"Index", "MeetingView", new { sitecode });
+            }
+
+            var task = await APIHelper.ApiClient.GetAsync(url);
+            var jsonString = await task.Content.ReadAsStringAsync();
+
+            SiteMeeting siteMeeting = JsonConvert.DeserializeObject<SiteMeeting>(jsonString);
+            return View(siteMeeting);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteThisMeeting(SiteMeeting siteMeeting)
+        {
+            if (ModelState.IsValid)
+            {
+                string id = siteMeeting.ID.ToString();
+                string url = $"https://localhost:44375/api/Meetings/{ id}";
+                //var jsonString = JsonConvert.SerializeObject(organization);
+                //var httpContent = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                HttpResponseMessage message = await APIHelper.ApiClient.DeleteAsync(url);
+
+                if (message.IsSuccessStatusCode)
+                {
+                    return RedirectToAction($"Index", "MeetingView", new { sitecode = siteMeeting.SiteCode });
+                }
+
+            }
+            return RedirectToAction($"Index", "MeetingView", new { sitecode = siteMeeting.SiteCode });
         }
 
 

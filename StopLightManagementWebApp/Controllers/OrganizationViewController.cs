@@ -22,8 +22,7 @@ namespace StopLightManagementWebApp.Controllers
 
         public async Task<ActionResult> Index(int? orgNum = 0)
         {
-            string url = "";
-            List<Organization> Model = null;
+            string url;
             if (orgNum > 0)
             {
                 return View("OrganizationDetails");
@@ -36,7 +35,7 @@ namespace StopLightManagementWebApp.Controllers
             var task = await APIHelper.ApiClient.GetAsync(url);
             var jsonString = await task.Content.ReadAsStringAsync();
 
-            Model = JsonConvert.DeserializeObject<List<Organization>>(jsonString);
+            List<Organization> Model = JsonConvert.DeserializeObject<List<Organization>>(jsonString);
 
             return View(Model);
         }
@@ -80,12 +79,10 @@ namespace StopLightManagementWebApp.Controllers
        
         public async Task<IActionResult> DeleteOrganization(int? ID)
         {
-            string url = "";
-            OrganizationIndexData organizationIndexData = null;
-
+            string url;
             if (ID > 0)
             {
-                url = $"https://localhost:44375/api/Organizations/GetOrganizationDetails/{ ID}";
+                url = $"https://localhost:44375/api/Meetings{ ID}";
             }
             else
             {
@@ -95,9 +92,7 @@ namespace StopLightManagementWebApp.Controllers
             var task = await APIHelper.ApiClient.GetAsync(url);
             var jsonString = await task.Content.ReadAsStringAsync();
 
-            organizationIndexData = JsonConvert.DeserializeObject<OrganizationIndexData>(jsonString);
-
-
+            OrganizationIndexData organizationIndexData = JsonConvert.DeserializeObject<OrganizationIndexData>(jsonString);
             return View(organizationIndexData);
         }
 
