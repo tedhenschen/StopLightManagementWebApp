@@ -38,7 +38,39 @@ namespace StopLightManagementWebApp.Controllers
             return View(siteMeetingVM);
         }
 
-       
+        // GET: SiteView/AddSite
+        public IActionResult AddMeeting(string sitecode, int id)
+        {
+            NewMeeting newMeeting = new NewMeeting
+            {
+                SiteCode = sitecode,
+                OrganizationID = id
+            };
+            return View(newMeeting);
+        }
+
+
+        //POST: SiteView/AddSite
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddMeeting(NewMeeting newMeeting)
+        {
+            if (ModelState.IsValid)
+            {
+                string url = "https://localhost:44375/api/Meetings/";
+                var jsonString = JsonConvert.SerializeObject(newMeeting);
+                var httpContent = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                HttpResponseMessage message = await APIHelper.ApiClient.PostAsync(url, httpContent);
+
+                if (message.IsSuccessStatusCode)
+                {
+                    return RedirectToAction($"Index", "MeetingView", new { sitecode = newMeeting.SiteCode });
+                }
+
+            }
+            return View();
+        }
+
 
     }
 }

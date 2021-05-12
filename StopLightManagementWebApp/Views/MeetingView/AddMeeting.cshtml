@@ -1,0 +1,55 @@
+﻿@model StopLightManagementWebApp.Models.ViewModels.NewMeeting
+
+
+@{
+    ViewData["Title"] = "Add Meeting";
+}
+
+<h1>Create New Meeting</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddMeeting" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TierLevel" class="control-label"></label>
+                <input asp-for="TierLevel" class="form-control" />
+                <span asp-validation-for="TierLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Frequency" class="control-label"></label>
+                <input asp-for="Frequency" class="form-control" />
+                <span asp-validation-for="Frequency" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SiteCode"></label>
+                <input asp-for="SiteCode" readonly />
+                <span asp-validation-for="SiteCode"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrganizationID"></label>
+                <input asp-for="OrganizationID" readonly />
+                <span asp-validation-for="OrganizationID"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Add Meeting" class="btn btn-primary" formaction="AddMeeting" />
+                @*<button asp-action="ReturnOrganization" asp-controller="SiteView" class="btn btn-primary"> Cancel </button>*@
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

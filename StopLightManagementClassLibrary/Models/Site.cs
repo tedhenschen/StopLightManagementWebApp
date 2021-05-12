@@ -9,8 +9,6 @@ namespace StopLightManagement.Models
 {
     public class Site
     {
-
-
         [Key]
         [Column(TypeName = "NVARCHAR(10)")]
         [StringLength(10)]
@@ -34,8 +32,12 @@ namespace StopLightManagement.Models
 
         public static implicit operator Site(string v)
         {
-            throw new NotImplementedException();
+                throw new NotImplementedException();        
         }
     }
+
+
+
+
 }
 

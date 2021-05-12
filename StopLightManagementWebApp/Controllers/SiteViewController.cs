@@ -75,8 +75,6 @@ namespace StopLightManagementWebApp.Controllers
 
             }
             return View();
-
-
         }
 
 
